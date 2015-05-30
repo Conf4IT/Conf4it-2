@@ -1,0 +1,11 @@
+{
+  "name": "conf4it",
+  "description": "conf4it website",
+  "version": "0.0.1",
+  "engines": {
+    "node": "0.10.x"
+  },
+  "dependencies": {
+    "express": "~4.12.4"
+  }
+}
