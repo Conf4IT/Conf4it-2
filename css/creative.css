@@ -423,3 +423,10 @@ body {
   font-size: 14px;
   font-weight: 300;
 }
+#confs img {
+  width: 10em;
+  height: 10em;
+}
+#confs .row {
+  margin: 2em 0 0 2em;
+}
