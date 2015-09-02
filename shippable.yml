@@ -17,14 +17,14 @@ before_install:
 
 script:
   - lessc ./less/creative.less ./css/creative.css
-
-after_success:
-  - cp ./css ./dist/css
-  - cp ./font-awesome ./dist/font-awesome
-  - cp ./fonts ./dist/fonts
-  - cp ./img ./dist/img
-  - cp ./js ./dist/js
+  - cp ./css -r ./dist/css
+  - cp ./font-awesome -r  ./dist/font-awesome
+  - cp ./fonts -r ./dist/fonts
+  - cp ./img -r ./dist/img
+  - cp ./js -r ./dist/js
   - cp ./index.html ./dist/index.html
+  
+after_success:
   - shippable_retry scp -pr ./dist conf4it@conf4itweb.cloudapp.net:conf4it
   - shippable_retry ssh conf4it@conf4itweb.cloudapp.net 'sudo mv conf4it/* /var/www/html/'
   - shippable_retry ssh conf4it@conf4itweb.cloudapp.net 'rm -rf conf4it'
