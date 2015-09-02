@@ -23,8 +23,8 @@ script:
   - cp ./img -r ./dist/img
   - cp ./js -r ./dist/js
   - cp ./index.html ./dist/index.html
-  
+
 after_success:
   - shippable_retry scp -pr ./dist conf4it@conf4itweb.cloudapp.net:conf4it
-  - shippable_retry ssh conf4it@conf4itweb.cloudapp.net 'sudo mv conf4it/* /var/www/html/'
+  - shippable_retry ssh conf4it@conf4itweb.cloudapp.net 'sudo rsync conf4it /var/www/html/'
   - shippable_retry ssh conf4it@conf4itweb.cloudapp.net 'rm -rf conf4it'
