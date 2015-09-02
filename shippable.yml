@@ -26,5 +26,5 @@ script:
 
 after_success:
   - shippable_retry scp -pr ./dist conf4it@conf4itweb.cloudapp.net:conf4it
-  - shippable_retry ssh conf4it@conf4itweb.cloudapp.net 'sudo rsync -r conf4it /var/www/html/'
+  - shippable_retry ssh conf4it@conf4itweb.cloudapp.net 'sudo rsync -a conf4it/* /var/www/html/'
   - shippable_retry ssh conf4it@conf4itweb.cloudapp.net 'rm -rf conf4it'
