@@ -25,6 +25,6 @@ script:
   - cp ./index.html ./dist/index.html
 
 after_success:
-  - shippable_retry scp -pr ./dist conf4it@conf4itweb.cloudapp.net:conf4it
-  - shippable_retry ssh conf4it@conf4itweb.cloudapp.net 'sudo rsync -a conf4it/* /var/www/html/'
-  - shippable_retry ssh conf4it@conf4itweb.cloudapp.net 'rm -rf conf4it'
+  - shippable_retry scp -pr ./dist webmaster.cli15444@ssh.conf4.it.elserver.com:conf4it
+  - shippable_retry ssh webmaster.cli15444@ssh.conf4.it.elserver.com 'sudo rsync -a conf4it/* /www/cli15444/htdocs/conf4.it/'
+  - shippable_retry ssh webmaster.cli15444@ssh.conf4.it.elserver.com 'rm -rf conf4it'
