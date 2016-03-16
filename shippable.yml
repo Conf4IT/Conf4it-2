@@ -11,20 +11,18 @@ branches:
 # language setting
 language: node_js
 
+# version numbers, testing against two versions of node
+node_js:
+  - "0.12.7"
+
 before_install:
+  - shippable_retry npm install -g grunt-cli
   - shippable_retry npm install -g less
-  - mkdir ./dist
 
 script:
-  - lessc ./less/creative.less ./css/creative.css
-  - cp ./css -r ./dist/css
-  - cp ./font-awesome -r  ./dist/font-awesome
-  - cp ./fonts -r ./dist/fonts
-  - cp ./img -r ./dist/img
-  - cp ./js -r ./dist/js
-  - cp ./index.html ./dist/index.html
+  - grunt build
 
 after_success:
-  - shippable_retry scp -pr ./dist webmaster.cli15444@ssh.conf4.it.elserver.com:conf4it
-  - shippable_retry ssh webmaster.cli15444@ssh.conf4.it.elserver.com 'sudo rsync -a conf4it/* /www/cli15444/htdocs/conf4.it/'
-  - shippable_retry ssh webmaster.cli15444@ssh.conf4.it.elserver.com 'rm -rf conf4it'
+  - shippable_retry scp -pr ./dist webmaster.cli15444@ssh.conf4.it.elserver.com:www/cli15444/conf4it
+  - shippable_retry ssh webmaster.cli15444@ssh.conf4.it.elserver.com 'sudo rsync -a ./www/cli15444/conf4it/* ./www/cli15444/htdocs/conf4.it/'
+  - shippable_retry ssh webmaster.cli15444@ssh.conf4.it.elserver.com 'rm -rf ./www/cli15444/conf4it'
